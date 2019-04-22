@@ -106,3 +106,4 @@ venv.bak/
 .DS_Store
 data/
 module_support_files/
+ignore/
