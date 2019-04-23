@@ -1,11 +1,9 @@
 /job_1234
 ==>Arguments read:
-/temp/data/long_input_file_list.txt
+/temp/data/rich_lab_file_list.txt
 ==>list of files provided:
-/temp/data/fastqs/HT75CBCX2.1.ATTACTCG-ATAGAGGC/1.1.fastq.gz /temp/data/fastqs/HT75CBCX2.1.ATTACTCG-ATAGAGGC/1.2.fastq.gz /temp/data/fastqs/HT75CBCX2.2.ATTACTCG-ATAGAGGC/2.1.fastq.gz /temp/data/fastqs/HT75CBCX2.2.ATTACTCG-ATAGAGGC/2.2.fastq.gz
+/temp/data/738-GSC_S14_R1_001.fastq.gz /temp/data/738-GSC_S14_R2_001.fastq.gz
 ==>Note that we are not calling Kallisto to create an index because for this application we have already built the index (it is part of the container).
 ==>About to perform transcript quantitation.
-==>About to perform transcript (TPM) aggregation.
-==>Done with all these analyses, the most inportant file created here is called 'gene_expression.csv'!
 ==>About to perform transcript (TPM) aggregation.
 ==>Done with all these analyses, the most inportant file created here is called 'gene_expression.csv'!
