@@ -8,20 +8,20 @@ Contact: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!fo
 
 Algorithm Version: Kallisto 0.45
 
-## Summary
-*To be added*
+<!-- ## Summary
+*To be added* -->
 
 ## References
 **Used verion 0.45, which is the most recent as of 2019-04-22**
 - https://pachterlab.github.io/kallisto/manual
 - https://anaconda.org/bioconda/kallisto
-*More to be added*
+<!-- *More to be added* -->
 
-### Functionality yet to be implemented:
+<!-- ### Functionality yet to be implemented:
 *To be added*
 
 ### Technical notes:
-*To be added*
+*To be added* -->
 
 ## Parameters
 
