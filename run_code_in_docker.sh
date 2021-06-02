@@ -12,6 +12,6 @@
 # docker run --rm -w /job_1234 -v $PWD/job_1234:/job_1234 -t genepattern/kallisto:4.2 time /module/call_kallisto.sh /module/test_data/input_file_list.txt --single --fragment-length=200 --sd=30
 
 # to test with double stranded data
-docker run --rm -w /job_1234 -v $PWD/job_1234:/job_1234 -v $PWD/data:/temp/data -t genepattern/kallisto:4.2 time /module/call_kallisto.sh /temp/data/rich_lab_file_list.txt
+docker run --rm -w /job_7357 -v $PWD/job_7357:/job_7357 -v $PWD/data:/temp/data -t genepattern/kallisto:4.2 time /module/call_kallisto.sh /temp/data/rich_lab_file_list.txt
 
 # docker run --rm -w /job_1234 -v $PWD/job_1234:/job_1234 -v $PWD/data:/temp/data -t genepattern/kallisto:4.2 ls /temp/data/

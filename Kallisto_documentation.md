@@ -2,6 +2,9 @@
 
 This is a bare-bones implementation of Kallisto, intended to be used for RNA quantitation against a human index (Homo_sapiens.GRCh38.95_kalllisto_index).
 
+[Probably this one: http://apr2019.archive.ensembl.org/index.html]
+[Ensembl Archive Release 96 (April 2019), equivalent to GENCODE release 30]
+
 Author: Edwin Juarez
 
 Contact: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help
