@@ -6,7 +6,7 @@ LSID=urn\:lsid\:broad.mit.edu:cancer.software.genepattern.module.analysis\:00383
 author=Edwin F. Juarez;GenePattern -- Mesirov Lab
 categories=RNA-Seq;RNA-seq
 
-job.docker.image=genepattern/kallisto\:4.2
+job.docker.image=genepattern/kallisto\:5.46.1
 job.memory=4Gb
 commandLine=/module/call_kallisto.sh <fastq_files> <extra_commands>
 
@@ -30,6 +30,7 @@ p1_prefix=
 p1_prefix_when_specified=
 p1_type=java.lang.String
 p1_value=
+
 p2_MODE=IN
 p2_TYPE=FILE
 p2_default_value=
@@ -43,6 +44,7 @@ p2_prefix=
 p2_prefix_when_specified=
 p2_type=java.io.File
 p2_value=
+
 privacy=private
 quality=production
 taskDoc=doc.html
