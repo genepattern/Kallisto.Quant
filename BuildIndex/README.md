@@ -8,7 +8,7 @@ This Jupyter notebook (create_kallisto_indices.ipynb) creates the Human and Mous
 
 #/module/test_data/SRR1515119_50k.fastq.gz
 
-No need for users to run this, but if you wanted to reproduce the indexes it's here.
+No need for users to run this, but if you wanted to reproduce the indices, it's here.
 
 ---
 Download Fasta and GTF files from here: https://www.gencodegenes.org/human/release_37.html https://www.gencodegenes.org/mouse/release_M26.html

@@ -1,24 +1,19 @@
-# Kallisto (v1.0)
+# Kallisto (v2.0)
 
-This is a bare-bones implementation of Kallisto, intended to be used for RNA quantitation against a human index (Homo_sapiens.GRCh38.95_kalllisto_index).
+This is a bare-bones implementation of Kallisto, intended to be used for RNA quantitation against a human index, Gencode release 37 (GRCh38.p13), or a mouse index, Gencode release M26 (GRCm39).
 
-[Probably this one: http://apr2019.archive.ensembl.org/index.html]
-[Ensembl Archive Release 96 (April 2019), equivalent to GENCODE release 30]
-
-Author: Edwin Juarez
+Module Author: Edwin Juarez
 
 Contact: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help
 
-Algorithm Version: Kallisto 0.45
+Algorithm Version: Kallisto 0.46.1
 
 <!-- ## Summary
 *To be added* -->
 
 ## References
-**Used verion 0.45, which is the most recent as of 2019-04-22**
+**Used verion 0.46.1, which is the most recent as of 2021-06-08**
 - https://pachterlab.github.io/kallisto/manual
-- https://anaconda.org/bioconda/kallisto
-<!-- *More to be added* -->
 
 <!-- ### Functionality yet to be implemented:
 *To be added*
@@ -28,21 +23,34 @@ Algorithm Version: Kallisto 0.45
 
 ## Parameters
 
-#### extra_commands
-- Default: [blank]
-- Required: No
-- Description: Write here what other parameters you want to pass to Kallisto, e.g., for single-end data, you can write "--single --fragment-length=200 --sd=30". This string will be passed to kallisto when it is called.
-
 #### fastq_files
 - Default: [blank]
 - Required: Yes
 - Description: The FASTQ (or fastq.gz) to be quantitated and translated into RNA seq transcript and gene counts.
 
+#### transcriptome
+- Default: Human
+- Required: Yes
+- Description: Which transcriptome to use for the pseudoalignment (Human or Mouse).
+
+#### output_filename
+- Default: 
+- Required: Yes
+- Description: 
+
+#### extra_commands
+- Default: [blank]
+- Required: No
+- Description: Write here what other parameters you want to pass to Kallisto, e.g., for single-end data, you can write "--single --fragment-length=200 --sd=30". This string will be passed to kallisto when it is called.
+
+
 ## Output Files
 - module_log.txt: A list of the commands ran by the module.
-- RNASeq_quant/abundance.h5: transcript-level abundance.
-- RNASeq_quant/abundance.tsv: transcript-level abundance (same as the h5 file).
-- RNASeq_quant/gene_expression.csv: gene-level abundance.
+- RNASeq_quant/<output_filename>_abundance.h5: transcript-level abundance. Use this file if you inted to use tximport.
+- RNASeq_quant/<output_filename>_abundance.tsv: transcript-level abundance (same as the h5 file).
+- RNASeq_quant/<output_filename>_normalized_gene_level.csv: normalized gene-level abundance.
+- RNASeq_quant/<output_filename>_raw_estimated_counts.csv: raw gene-level estimated counts.
+- RNASeq_quant/<output_filename>_transcript_level.csv: transcript-level abundance.
 - RNASeq_quant/run_info.json: kallisto's parameters used.
 - stdout.txt: A list of non-essential messages printed by Kallisto, this may be helpful to debug should any errors occur.
 - stderr.txt: If there were errors in completing the job, they'd appear here. Note that the mere presence of a file with this name does not imply that there were errors. Here is an example of the contents of the stderr.txt file from our test run:
@@ -87,17 +95,8 @@ If you did not expect this, check your 'target_mapping' table for missing values
 
 Kallisto itself and this GenePattern module are distributed under a modified BSD license. This module's license is available at https://raw.githubusercontent.com/genepattern/Kallisto/develop/LICENSE
 
-## Platform Dependencies
-Task Type: RNASeq quantitation
-CPU Type:
-any
-
-Operating System:
-any
-
-Language:
-C++
 
 Version Comments
 Version	Release Date	Description
+2	2021-06-08	Adding Mouse index and upgrading Human index
 1	2019-04-22	Initial release of Kallisto
