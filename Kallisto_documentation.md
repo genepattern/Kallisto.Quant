@@ -17,9 +17,12 @@ Algorithm Version: Kallisto 0.46.1
 
 <!-- ### Functionality yet to be implemented:
 *To be added*
+*To be added* -->
 
 ### Technical notes:
-*To be added* -->
+- Docker container for this module: [genepattern/kallisto:5.46.1](https://hub.docker.com/layers/genepattern/kallisto/5.46.1/images/sha256-3161a3bdd346f8ebcd677ba6dec9f829ac8e38740db639676bd94a7c2f6e6895?context=repo)
+- GitHub repo for this module: https://github.com/genepattern/Kallisto/releases/tag/v2
+- This module uses Sleuth (version 0.30.0) for the gene aggregation step (but does not compute differential expression): https://anaconda.org/bioconda/r-sleuth & https://pachterlab.github.io/sleuth/manual
 
 ## Parameters
 
@@ -57,15 +60,15 @@ Algorithm Version: Kallisto 0.46.1
 ```
 [quant] fragment length distribution is truncated gaussian with mean = 200, sd = 30
 [index] k-mer length: 31
-[index] number of targets: 226,365
-[index] number of k-mers: 128,073,294
-[index] number of equivalence classes: 894,257
+[index] number of targets: 234,485
+[index] number of k-mers: 143,310,200
+[index] number of equivalence classes: 1,002,767
 [quant] running in single-end mode
-[quant] will process file 1: /opt/gpcloud/gp_home/users/edjuaro/uploads/tmp/external/datasets.genepattern.org/data/module_support_files/Kallisto/test_data/SRR1515119_50k.fastq.gz
+[quant] will process file 1: /opt/gpbeta_2/gp_home/users/.cache/uploads/cache/datasets.genepattern.org/data/module_support_files/Kallisto/test_data/SRR1515119_50k.fastq.gz
 [quant] finding pseudoalignments for the reads ... done
-[quant] processed 50,000 reads, 190 reads pseudoaligned
+[quant] processed 50,000 reads, 192 reads pseudoaligned
 [   em] quantifying the abundances ... done
-[   em] the Expectation-Maximization algorithm ran for 311 rounds
+[   em] the Expectation-Maximization algorithm ran for 501 rounds
 [bstrp] running EM for the bootstrap: 1
 [bstrp] running EM for the bootstrap: 2
 
@@ -74,21 +77,28 @@ reading in kallisto results
 dropping unused factor levels
 .
 normalizing est_counts
-5 targets passed the filter
+6 targets passed the filter
 normalizing tpm
 merging in metadata
-aggregating by column: ext_gene
-5 genes passed the filter
+aggregating by column: gene_name
+6 genes passed the filter
 summarizing bootstraps
 .
 Warning messages:
-1: In sleuth_prep(s2c, ~condition, target_mapping = t2g, aggregation_column = "ext_gene",  :
+1: In sleuth_prep(s2c, ~condition, target_mapping = t2g, aggregation_column = "gene_name",  :
   There is only one sample present, but you also provided a model. The model will be set to NULL to prevent downstream errors.
 The sample can be viewed using sleuth_live after preparation, but you need more than one sample to run the other aspects of Sleuth.
-2: In sleuth_prep(s2c, ~condition, target_mapping = t2g, aggregation_column = "ext_gene",  :
-  195 target_ids are missing annotations for the aggregation_column: ext_gene.
-These target_ids will be dropped from the gene-level analysis.
-If you did not expect this, check your 'target_mapping' table for missing values.
+2: `select_()` is deprecated as of dplyr 0.7.0.
+Please use `select()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated. 
+3: In data.table::melt(bs_df, id.vars = "bootstrap_num", variable.name = "target_id",  :
+  The melt generic in data.table has been passed a data.frame and will attempt to redirect to the relevant reshape2 method; please note that reshape2 is deprecated, and this redirection is now deprecated as well. To continue using melt methods from reshape2 while both libraries are attached, e.g. melt.list, you can prepend the namespace like reshape2::melt(bs_df). In the next version, this warning will become an error.
+4: In data.table::dcast(scaled_bs, sample ~ target_id, value.var = "scaled_reads_per_base") :
+  The dcast generic in data.table has been passed a data.frame and will attempt to redirect to the reshape2::dcast; please note that reshape2 is deprecated, and this redirection is now deprecated as well. Please do this redirection yourself like reshape2::dcast(scaled_bs). In the next version, this warning will become an error.
+Warning message:
+In check_quant_mode(obj, which_units) :
+  your sleuth object is in gene mode, but you selected 'est_counts'. Selecting 'scaled_reads_per_base'...
 ```
 
 ## License
