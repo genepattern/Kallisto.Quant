@@ -11,5 +11,5 @@ params:
 assertions:
     diffCmd: diff <%gpunit.diffStripTrailingCR%> -q
     files:
-        "RNASeq_quant/test_data.csv":
-            diff: "output/basic_test/expression_data.csv"
+        "RNASeq_quant/test_data_normalized_gene_level.csv":
+            diff: "output/basic_test/test_data_normalized_gene_level.csv"
