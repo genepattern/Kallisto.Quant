@@ -1,1 +1,2 @@
-/module/test_data/SRR1515119_50k.fastq.gz
+/module/test_data/NSC11_S13_R1_001.fastq.gz
+/module/test_data/NSC11_S13_R2_001.fastq.gz

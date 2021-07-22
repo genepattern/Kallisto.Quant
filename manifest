@@ -1,51 +1,81 @@
-#Kallisto
-#Mon Apr 22 18:12:29 UTC 2019
+# Kallisto  urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00383:2
+#Tue Jun 08 01:51:51 UTC 2021
 JVMLevel=
-LSID=urn\:lsid\:broad.mit.edu:cancer.software.genepattern.module.analysis\:00383\:1.0
-
+LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00383\:2
 author=Edwin F. Juarez;GenePattern -- Mesirov Lab
-categories=RNA-Seq;RNA-seq
-
-job.docker.image=genepattern/kallisto\:4.2
-job.memory=4Gb
-commandLine=/module/call_kallisto.sh <fastq_files> <extra_commands>
-
+categories=rna-seq
+commandLine=/module/call_kallisto.sh <fastq_files> <transcriptome> <output_filename> <extra_commands>
 cpuType=any
-description=Running Kallisto with basic parameters to perfomr pseudoalignment using a human transcriptome index (GRCh 38 from the Ensembl Archive Release 95).
-fileFormat=
+description=Running Kallisto with basic or custom parameters to perform pseudoalignment (using a human or mouse transcriptome index) and gene-level aggregation.
+fileFormat=csv
 
+job.docker.image=genepattern/kallisto\:5.46.1
+job.memory=4Gb
 language=any
 name=Kallisto
 os=any
-p1_MODE=
-p1_TYPE=TEXT
+
+p1_MODE=IN
+p1_TYPE=FILE
 p1_default_value=
-p1_description=Write here what other parameters you want to pass to Kallisto, e.g., for single-end data, you can write "--single --fragment-length\=200 --sd\=30"
-p1_fileFormat=
+p1_description=Provide your FASTQ files here (they can be fastq.gz)
+p1_fileFormat=.fastq.gz;FASTQ;fastq;fastq.gz
 p1_flag=
-p1_name=extra_commands
-p1_numValues=0..1
-p1_optional=on
+p1_name=fastq_files
+p1_numValues=0+
+p1_optional=
 p1_prefix=
 p1_prefix_when_specified=
-p1_type=java.lang.String
+p1_type=java.io.File
 p1_value=
-p2_MODE=IN
-p2_TYPE=FILE
-p2_default_value=
-p2_description=Provide your FASTQ files here (they can be fastq.gz)
+
+p2_MODE=
+p2_TYPE=TEXT
+p2_default_value=Human
+p2_description=Choose which transcriptome to use for the pseudoalignment.
 p2_fileFormat=
 p2_flag=
-p2_name=fastq_files
-p2_numValues=0+
+p2_name=transcriptome
+p2_numValues=0..1
 p2_optional=
 p2_prefix=
 p2_prefix_when_specified=
-p2_type=java.io.File
-p2_value=
-privacy=private
+p2_type=java.lang.String
+p2_value=Human\=Human (Gencode v37 -- GRCh38.p13);Mouse\=Mouse (Gencode M26 -- GRCm39)
+
+p3_MODE=
+p3_TYPE=TEXT
+p3_default_value=expression_data
+p3_description=Provide the base name of the files to be created.
+p3_fileFormat=
+p3_flag=
+p3_name=output_filename
+p3_numValues=0..1
+p3_optional=
+p3_prefix=
+p3_prefix_when_specified=
+p3_type=java.lang.String
+p3_value=
+
+p4_MODE=
+p4_TYPE=TEXT
+p4_default_value=
+p4_description=Write here what other parameters you want to pass to Kallisto, e.g., for single-end data, you can write "--single --fragment-length\=200 --sd\=30"
+p4_fileFormat=
+p4_flag=
+p4_name=extra_commands
+p4_numValues=0..1
+p4_optional=on
+p4_prefix=
+p4_prefix_when_specified=
+p4_type=java.lang.String
+p4_value=
+
+privacy=public
+publicationDate=09/13/2019 19\:05 
 quality=production
+src.repo=https://github.com/genepattern/Kallisto/releases/tag/v2
 taskDoc=doc.html
-taskType=RNA-Seq
+taskType=rna-seq
 userid=edjuaro
-version=Initial version (1.0)
+version=Added Mouse index, Release M26 (GRCm39), and updated Human index, Release 37 (GRCh38.p13), from Gencode.
