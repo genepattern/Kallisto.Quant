@@ -32,9 +32,11 @@ echo $list_of_files
 echo $list_of_files >> module_log.txt
 
 #==> parse $1 to open file, and turn newlines into spaces (create FILE_LIST_TO_STRING)
+echo "fastq_files: $1"
 shift
 
 #Do somthing fancier here, if human, set INDEX to /build/kallisto/HUMAN_gencode.v37.transcripts.idx AND GENE_IDS to /build/kallisto/HUMAN_gencode.v37_t2g.csv
+echo "transcriptome: $1"
 if [[ $1 == "Human" ]]
 then
   INDEX=/build/kallisto/HUMAN_gencode.v37.transcripts.idx
@@ -55,7 +57,113 @@ else
 fi
 shift
 
+echo "bias: $1"
+if [[ $1 == "YES" ]]
+then
+    BIAS="--bias"
+else
+    BIAS=""
+fi
+shift
+
+echo "output_filename: $1"
 OUT_BASENAME=$1
+shift
+
+echo "bootstrap_samples: $1"
+BOOTSTRAP=$1
+shift
+
+echo "seed: $1"
+SEED=$1
+shift
+
+echo "quantify_reads: $1"
+if [[ $1 == "YES" ]]
+then
+    SINGLE="--single"
+else
+    SINGLE=""
+fi
+shift
+
+echo "include_overhang: $1"
+if [[ $1 == "YES" ]]
+then
+    OVERHANG="--single-overhang"
+else
+    OVERHANG=""
+fi
+shift
+
+echo "read_direction: $1"
+if [[ $1 == "forward" ]]
+then
+    DIRECTION="--fr-stranded"
+elif [[ $1 == "reverse" ]]
+then
+    DIRECTION="--rf-stranded"
+else
+    DIRECTION=""
+fi
+shift
+
+EXTRACTED_NUMBER=$(echo $1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tr '\n' ' '; echo "")
+echo "fragment_length: $EXTRACTED_NUMBER"
+if [[ ! -z "$EXTRACTED_NUMBER" ]]
+then
+    F_LENGTH="--fragment-length $EXTRACTED_NUMBER"
+else
+    F_LENGTH=""
+fi
+shift
+
+EXTRACTED_NUMBER=$(echo $1 | grep -Eo '[+-]?[0-9]+([.][0-9]+)?' | tr '\n' ' '; echo "")
+echo "fragment_sd: $EXTRACTED_NUMBER"
+if [[ ! -z "$EXTRACTED_NUMBER" ]]
+then
+    F_SD="--sd $EXTRACTED_NUMBER"
+else
+    F_SD=""
+fi
+shift
+
+echo "pseudobam: $1"
+if [[ $1 == "YES" ]]
+then
+    PSEUDOBAM="--pseudobam"
+else
+    PSEUDOBAM=""
+fi
+shift
+
+echo "genomebam: $1"
+if [[ $1 == "YES" ]]
+then
+    GENOMEBAM="--genomebam"
+else
+    GENOMEBAM=""
+fi
+shift
+
+EXTRACTED_PATH=$(echo "$1" | sed -e "s/^gtf_//")
+echo "gtf_file: $EXTRACTED_PATH"
+if [[ ! -z "$EXTRACTED_PATH" ]]
+then
+    GTF="--gtf $EXTRACTED_PATH"
+else
+    GTF=""
+fi
+shift
+
+EXTRACTED_PATH=$(echo "$1" | sed -e "s/^chr_//")
+echo "chromosome_file: $EXTRACTED_PATH"
+if [[ ! -z "$EXTRACTED_PATH" ]]
+then
+    CHR="--chromosomes $EXTRACTED_PATH"
+else
+    CHR=""
+fi
 shift
 
 #echo "==>About to use Kallisto to create index"
@@ -67,7 +175,7 @@ echo "==>Note that we are not calling Kallisto to create an index because for th
 echo "==>About to perform transcript quantitation."
 echo "==>About to perform transcript quantitation." >> module_log.txt
 # NEW: # hardcoding "-b 2" [two bootstraps, the minimum, we don't use them in this workflow]
-kallisto quant --index=$INDEX --output-dir=RNASeq_quant -b 2 $@ $list_of_files
+kallisto quant --index=$INDEX --output-dir=RNASeq_quant $BIAS --bootstrap-samples $BOOTSTRAP --seed $SEED $SINGLE $OVERHANG $DIRECTION $F_LENGTH $F_SD $PSEUDOBAM $GENOMEBAM $GTF $CHR $list_of_files
 
 echo "==>About to perform transcript (TPM) aggregation."
 echo "==>About to perform transcript (TPM) aggregation." >> module_log.txt

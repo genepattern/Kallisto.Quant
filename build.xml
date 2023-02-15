@@ -6,7 +6,7 @@
 <target name="create-zip" depends="init">
     <antcall target="prezip"/>
     <zip destfile="${dest.dir}/${ant.project.name}.zip" whenempty="fail" defaultexcludes="true">
-        <fileset dir="." includes="manifest, doc.html, Dockerfile, LICENSE"/>
+        <fileset dir="." includes="manifest, doc.html, Dockerfile, LICENSE, paramgroups.json"/>
         <zipfileset dir="src" includes="call_kallisto.sh, transcript2genes.R"/>
     </zip>
     <antcall target="postzip"/>

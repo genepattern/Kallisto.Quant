@@ -1,0 +1,39 @@
+[
+  { name: "Basic Parameters",
+    parameters: [ 
+      "fastq_files",
+      "transcriptome",
+      "bias",
+      "output_filename"
+    ]
+  },
+  { name: "Bootstrapping Parameters",
+    description: "These parameters configure bootstrap sampling",
+    hidden: true,
+    parameters: [
+      "bootstrap_samples",
+      "seed"
+    ]
+  },
+  { name: "Single End Read Parameters",
+    description: "These parameters are only used with single-end reads",
+    hidden: true,
+    parameters: [
+      "quantify_reads",
+      "include_overhang",
+      "read_direction",
+      "fragment_length",
+      "fragment_sd"
+    ]
+  },
+  { name: "BAM Parameters",
+    description: "These parameters are used when savings alignments to a BAM file",
+    hidden: true,
+    parameters: [
+      "pseudobam",
+      "genomebam",
+      "gtf_file",
+      "chromosome_file"
+    ]
+  }
+]
