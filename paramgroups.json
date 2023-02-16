@@ -4,6 +4,8 @@
       "fastq_files",
       "transcriptome",
       "bias",
+      "include_overhang",
+      "read_direction",
       "output_filename"
     ]
   },
@@ -16,18 +18,16 @@
     ]
   },
   { name: "Single End Read Parameters",
-    description: "These parameters are only used with single-end reads",
+    description: "These parameters are only used with single end reads",
     hidden: true,
     parameters: [
       "quantify_reads",
-      "include_overhang",
-      "read_direction",
       "fragment_length",
       "fragment_sd"
     ]
   },
   { name: "BAM Parameters",
-    description: "These parameters are used when savings alignments to a BAM file",
+    description: "These parameters are used when saving alignments to a BAM file",
     hidden: true,
     parameters: [
       "pseudobam",

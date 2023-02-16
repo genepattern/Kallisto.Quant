@@ -5,11 +5,12 @@
 name: "Kallisto - Basic test"
 module: Kallisto
 params:
-    fastq_files: "https://datasets.genepattern.org/data/module_support_files/Kallisto/test_data/SRR1515119_50k.fastq.gz"
-    output_filename: "test_data"
-    quantify_reads: "YES"
-    fragment_length: 200
-    fragment_sd: 30
+    fastq.files: "https://datasets.genepattern.org/data/module_support_files/Kallisto/test_data/SRR1515119_50k.fastq.gz"
+    output.filename: "test_data"
+    bias: "NO"
+    quantify.reads: "YES"
+    fragment.length: 200
+    fragment.sd: 30
 assertions:
     diffCmd: diff <%gpunit.diffStripTrailingCR%> -q
     files:
