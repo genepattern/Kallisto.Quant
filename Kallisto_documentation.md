@@ -1,8 +1,8 @@
 # Kallisto (v2.0)
 
-This is a bare-bones implementation of Kallisto, intended to be used for RNA quantitation against a human index, Gencode release 37 (GRCh38.p13), or a mouse index, Gencode release M26 (GRCm39).
+This is an implementation of Kallisto, intended to be used for RNA quantitation against a human index, Gencode release 37 (GRCh38.p13), or a mouse index, Gencode release M26 (GRCm39).
 
-Module Author: Edwin Juarez
+Module Author: Edwin Juarez, Thorin Tabor
 
 Contact: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help
 
@@ -20,32 +20,86 @@ Algorithm Version: Kallisto 0.46.1
 *To be added* -->
 
 ### Technical notes:
-- Docker container for this module: [genepattern/kallisto:5.46.1](https://hub.docker.com/layers/genepattern/kallisto/5.46.1/images/sha256-3161a3bdd346f8ebcd677ba6dec9f829ac8e38740db639676bd94a7c2f6e6895?context=repo)
-- GitHub repo for this module: https://github.com/genepattern/Kallisto/releases/tag/v2
+- Docker container for this module: [genepattern/kallisto:6](https://hub.docker.com/layers/genepattern/kallisto/6/images/sha256-15b49b9e11b6440d88f444e5d4c967eb11ea58afa749856fe72609fede8213e4?context=repo)
+- GitHub repo for this module: https://github.com/genepattern/Kallisto/releases/tag/v3
 - This module uses Sleuth (version 0.30.0) for the gene aggregation step (but does not compute differential expression): https://anaconda.org/bioconda/r-sleuth & https://pachterlab.github.io/sleuth/manual
 
 ## Parameters
 
-#### fastq_files
+#### fastq.files
 - Default: [blank]
 - Required: Yes
-- Description: The FASTQ (or fastq.gz) to be quantitated and translated into RNA seq transcript and gene counts.
+- Description: The fastq or fastq.gz files to be quantitated and translated into RNA seq transcript and gene counts
 
 #### transcriptome
 - Default: Human
 - Required: Yes
 - Description: Which transcriptome to use for the pseudoalignment (Human or Mouse).
 
-#### output_filename
-- Default: 
+#### bias
+- Default: YES
+- Required: YES
+- Description: Perform sequence based bias correction
+
+#### include.overhang
+- Default: NO
 - Required: Yes
-- Description: 
+- Description: Include reads where unobserved rest of fragment is predicted to lie outside a transcript
 
-#### extra_commands
-- Default: [blank]
+#### read.direction
+- Default: not set
+- Required: Yes
+- Description: For strand specific reads, first read forward, first read reverse or unspecified
+
+#### output.filename
+- Default: expression_data
+- Required: Yes
+- Description: The base name of the files to be created
+
+#### bootstrap.samples
+- Default: 2
+- Required: Yes
+- Description: Number of bootstrap samples
+
+#### seed
+- Default: 42
+- Required: Yes
+- Description: Seed for the bootstrap sampling
+
+#### quantify.reads
+- Default: NO
+- Required: Yes
+- Description: Quantify single-end reads
+
+#### fragment.length
+- Default: 
 - Required: No
-- Description: Write here what other parameters you want to pass to Kallisto, e.g., for single-end data, you can write "--single --fragment-length=200 --sd=30". This string will be passed to kallisto when it is called.
+- Description: Estimated average fragment length (float value)
 
+#### fragment.sd
+- Default:
+- Required: No
+- Description: Estimated standard deviation of fragment length; values are estimated with paired end data, but are required when using single-end reads (float value)
+
+#### pseudobam
+- Default: NO
+- Required: Yes
+- Description: Save pseudoalignments to transcriptome to a BAM file
+
+#### genomebam
+- Default: NO
+- Required: Yes
+- Description: Project pseudoalignments to genome sorted BAM file
+
+#### gtf.file
+- Default: 
+- Required: No
+- Description: GTF file for transcriptome information, required for projecting pseudoalignments to genome sorted BAM file
+
+#### chromosome.file
+- Default:
+- Required: No
+- Description: Tab separated file with chromosome names and lengths, optional for projecting pseudoalignments to genome sorted BAM file, but recommended
 
 ## Output Files
 - module_log.txt: A list of the commands ran by the module.

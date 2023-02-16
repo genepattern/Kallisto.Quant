@@ -2,7 +2,7 @@
 #Tue Jun 08 01:51:51 UTC 2021
 JVMLevel=
 LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00383\:2
-author=Edwin F. Juarez;GenePattern -- Mesirov Lab
+author=Edwin F. Juarez, Thorin Tabor
 categories=rna-seq
 commandLine=/module/call_kallisto.sh <fastq.files> <transcriptome> <bias> <output.filename> <bootstrap.samples> <seed> \
     <quantify.reads> <include.overhang> <read.direction> fl_<fragment.length> fsd_<fragment.sd> <pseudobam> <genomebam> \
@@ -20,7 +20,7 @@ os=any
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=The fastq or fastq.gz files to be aligned
+p1_description=The fastq or fastq.gz files to be quantitated and translated into RNA seq transcript and gene counts
 p1_fileFormat=.fastq.gz;FASTQ;fastq;fastq.gz
 p1_flag=
 p1_name=fastq.files
@@ -34,7 +34,7 @@ p1_value=
 p2_MODE=
 p2_TYPE=TEXT
 p2_default_value=Human
-p2_description=Choose which transcriptome to use for the pseudoalignment.
+p2_description=Which transcriptome to use for the pseudoalignment.
 p2_fileFormat=
 p2_flag=
 p2_name=transcriptome
@@ -62,7 +62,7 @@ p3_value=NO\=NO;YES\=YES
 p4_MODE=
 p4_TYPE=TEXT
 p4_default_value=expression_data
-p4_description=Provide the base name of the files to be created.
+p4_description=The base name of the files to be created
 p4_fileFormat=
 p4_flag=
 p4_name=output.filename
