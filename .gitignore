@@ -109,3 +109,13 @@ ignore/
 reports/
 Kallisto.zip
 src/.DS_Store
+src/kallisto/kallisto
+src/kallisto/license.txt
+src/kallisto/README.md
+src/kallisto/test/chrom.txt
+src/kallisto/test/README.md
+src/kallisto/test/reads_1.fastq.gz
+src/kallisto/test/reads_2.fastq.gz
+src/kallisto/test/Snakefile
+src/kallisto/test/transcripts.fasta.gz
+src/kallisto/test/transcripts.gtf.gz
