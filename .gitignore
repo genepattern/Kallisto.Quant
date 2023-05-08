@@ -108,3 +108,4 @@ module_support_files/
 ignore/
 reports/
 Kallisto.zip
+src/.DS_Store

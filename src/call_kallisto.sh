@@ -37,23 +37,37 @@ shift
 
 #Do somthing fancier here, if human, set INDEX to /build/kallisto/HUMAN_gencode.v37.transcripts.idx AND GENE_IDS to /build/kallisto/HUMAN_gencode.v37_t2g.csv
 echo "transcriptome: $1"
-if [[ $1 == "Human" ]]
+if [[ $1 == *"Homo_sapiens"* ]]
 then
-  INDEX=/build/kallisto/HUMAN_gencode.v37.transcripts.idx
-  GENE_IDS=/build/kallisto/HUMAN_gencode.v37_t2g.csv
+  INDEX=$1
+  wget -P . $INDEX
+
+  if [ -d ${INDEX##*/} ]
+  then
+    INDEX=${INDEX##*/}
+  fi
+
+  ls -alrt
+  wget -P . https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_43/gencode.v43.annotation.gtf.gz
+  python3 /module/run_t2g.py --transcript_gtf gencode.v43.annotation.gtf.gz
+  GENE_IDS=HUMAN_gencode.v43_t2g.csv
   echo "Using INDEX=$INDEX and GENE_IDS=$GENE_IDS"
   echo "Using INDEX=$INDEX and GENE_IDS=$GENE_IDS" >> module_log.txt
-else
-   if [ $1 == "Mouse" ]
-   then
-     INDEX=/build/kallisto/MOUSE_gencode.vM26.transcripts.idx
-     GENE_IDS=/build/kallisto/MOUSE_gencode.vM26_t2g.csv
-     echo "Using INDEX=$INDEX and GENE_IDS=$GENE_IDS"
-     echo "Using INDEX=$INDEX and GENE_IDS=$GENE_IDS" >> module_log.txt
-   else
-     echo "We only have Human or Mouse indices at the moment"
-     echo "We only have Human or Mouse indices at the moment" >> module_log.txt
-   fi
+elif [[ $1 == *"Mus_musculus"* ]]
+then
+  INDEX=$1
+  wget -P . $INDEX
+  
+  if [ -d ${INDEX##*/} ]
+  then
+    INDEX=${INDEX##*/}
+  fi
+
+  wget -P . https://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_mouse/release_M32/gencode.vM32.annotation.gtf.gz
+  python3 /module/run_t2g.py --transcript_gtf gencode.vM32.annotation.gtf.gz
+  GENE_IDS=MOUSE_gencode.vM32_t2g.csv
+  echo "Using INDEX=$INDEX and GENE_IDS=$GENE_IDS"
+  echo "Using INDEX=$INDEX and GENE_IDS=$GENE_IDS" >> module_log.txt
 fi
 shift
 
@@ -175,7 +189,7 @@ echo "==>Note that we are not calling Kallisto to create an index because for th
 echo "==>About to perform transcript quantitation."
 echo "==>About to perform transcript quantitation." >> module_log.txt
 # NEW: # hardcoding "-b 2" [two bootstraps, the minimum, we don't use them in this workflow]
-kallisto quant --index=$INDEX --output-dir=RNASeq_quant $BIAS --bootstrap-samples $BOOTSTRAP --seed $SEED $SINGLE $OVERHANG $DIRECTION $F_LENGTH $F_SD $PSEUDOBAM $GENOMEBAM $GTF $CHR $list_of_files
+/module/kallisto/kallisto quant --index=$INDEX --output-dir=RNASeq_quant $BIAS --bootstrap-samples $BOOTSTRAP --seed $SEED $SINGLE $OVERHANG $DIRECTION $F_LENGTH $F_SD $PSEUDOBAM $GENOMEBAM $GTF $CHR $list_of_files
 
 echo "==>About to perform transcript (TPM) aggregation."
 echo "==>About to perform transcript (TPM) aggregation." >> module_log.txt

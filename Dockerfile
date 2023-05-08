@@ -10,12 +10,14 @@ RUN apt-get update && apt-get install -y time
 RUN mkdir /build
 
 #Add Kallisto
-ADD BuildIndex/kallisto_linux-v0.46.1 /build/kallisto
-ADD BuildIndex/to_add /build/kallisto
+# ADD BuildIndex/kallisto_linux-v0.46.1 /build/kallisto
+# ADD BuildIndex/to_add /build/kallisto
 ENV PATH="/opt/gtk/bin:${PATH}"
 
 # Install sleuth: https://anaconda.org/bioconda/r-sleuth
 RUN conda install -c bioconda r-sleuth==0.30.0
+RUN conda install -c bioconda gtfparse==1.2.1
+
 
 # Not used for now 2021-06-02 # Install tximport: https://anaconda.org/bioconda/bioconductor-tximport
 #RUN conda install -c bioconda bioconductor-tximport==1.20.0
@@ -33,7 +35,7 @@ ADD src/ /module
 
 # using the same user as the parent container as described in:
 # https://hub.docker.com/r/jupyter/datascience-notebook/dockerfile
-USER $NB_UID
+# USER $NB_UID
 
 # build using this:
 # docker build -t genepattern/kallisto:5.46.1 .
