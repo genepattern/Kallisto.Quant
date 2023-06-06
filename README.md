@@ -2,7 +2,7 @@
 
 This is an implementation of Kallisto, intended to be used for RNA quantitation against a human index, Gencode release 37 (GRCh38.p13), or a mouse index, Gencode release M26 (GRCm39).
 
-Module Author: Edwin Juarez, Thorin Tabor
+Module Author: Edwin Juarez, Thorin Tabor, Edwin Huang
 
 Contact: https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!forum/genepattern-help
 
