@@ -1,7 +1,7 @@
-# Kallisto  urn:lsid:broad.mit.edu:cancer.software.genepattern.module.analysis:00383:2
-#Wed May 03 16:53:46 UTC 2023
+#Kallisto.Quant
+#Tue Jun 06 19:35:11 UTC 2023
 JVMLevel=
-LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00383\:2
+LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00383\:3.2
 author=Edwin F. Juarez, Thorin Tabor, Edwin Huang
 categories=rna-seq
 commandLine=/module/call_kallisto.sh <fastq.files> <transcriptome> <bias> <output.filename> <bootstrap.samples> <seed> <quantify.reads> <include.overhang> <read.direction> fl_<fragment.length> fsd_<fragment.sd> <pseudobam> <genomebam> gtf_<gtf.file> chr_<chromosome.file> 
@@ -14,7 +14,7 @@ job.docker.image=genepattern/kallisto\:v7
 job.memory=4Gb
 job.walltime=
 language=any
-name=Kallisto
+name=Kallisto.Quant
 os=any
 p10_MODE=
 p10_TYPE=Floating Point
@@ -97,7 +97,7 @@ p15_value=
 p1_MODE=IN
 p1_TYPE=FILE
 p1_default_value=
-p1_description=The fastq or fastq.gz files to be quantitated and translated into RNA seq transcript and gene counts
+p1_description=The fastq or fastq.gz files for RNA quantification using psuedoalignment. Link to how psuedoalignment works (https\://tinyheero.github.io/2015/09/02/pseudoalignments-kallisto.html)
 p1_fileFormat=.fastq.gz;FASTQ;fastq;fastq.gz
 p1_flag=
 p1_name=fastq.files
@@ -212,11 +212,11 @@ p9_prefix=
 p9_prefix_when_specified=
 p9_type=java.lang.String
 p9_value=NO\=NO;YES\=YES
-privacy=private
-publicationDate=02/16/2023 16\:08 
-quality=production
+privacy=public
+publicationDate=05/08/2023 11\:45 
+quality=preproduction
 src.repo=https\://github.com/genepattern/Kallisto/releases/tag/v2
 taskDoc=doc.html
 taskType=rna-seq
 userid=edwin5588
-version=dynamic drop down for kallisto
+version=dynamic drop down for kallisto, rename to Kallisto.Quant, update parameter descriptions 
