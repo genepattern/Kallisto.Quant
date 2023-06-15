@@ -1,5 +1,5 @@
 #Kallisto.Quant
-#Tue Jun 06 19:35:11 UTC 2023
+#Thu Jun 15 17:28:14 UTC 2023
 JVMLevel=
 LSID=urn\:lsid\:broad.mit.edu\:cancer.software.genepattern.module.analysis\:00383\:3.2
 author=Edwin F. Juarez, Thorin Tabor, Edwin Huang
@@ -213,8 +213,8 @@ p9_prefix_when_specified=
 p9_type=java.lang.String
 p9_value=NO\=NO;YES\=YES
 privacy=public
-publicationDate=05/08/2023 11\:45 
-quality=preproduction
+publicationDate=06/06/2023 15\:39 
+quality=production
 src.repo=https\://github.com/genepattern/Kallisto/releases/tag/v2
 taskDoc=doc.html
 taskType=rna-seq
